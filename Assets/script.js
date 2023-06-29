@@ -10,42 +10,42 @@ let availableQuestions = []
 let questions = [
     {
         question: "Who wore #13 during the 2021-2022 NHL season?",
-        choice1: "<Nico Hischier>",
-        choice2: "<Jack Hughes>",
-        choice3: "<Dougie Hamilton>",
-        choice4: "<Damon Severson>",
+        choice1: "Nico Hischier",
+        choice2: "Jack Hughes",
+        choice3: "Dougie Hamilton",
+        choice4: "Damon Severson",
         answer: 1
     },
     {
         question: "What were the New Jersey Devils originally called?",
-        choice1: "<Ice Demons>",
-        choice2: "<Rockies>",
-        choice3: "<Comets>",
-        choice4: "<Scouts>",
+        choice1: "Ice Demons",
+        choice2: "Rockies",
+        choice3: "Comets",
+        choice4: "Scouts",
         answer: 4
     },
     {
         question: "What was the first jersey number retired by the New Jersey Devils?",
-        choice1: "<3>",
-        choice2: "<27>",
-        choice3: "<4>",
-        choice4: "<26>",
+        choice1: "3",
+        choice2: "27",
+        choice3: "4",
+        choice4: "26",
         answer: 3
     },
     {
         question: "Which goaltender is the Devils' career leader in wins?",
-        choice1: "<Cory Schneider>",
-        choice2: "<Martin Brodeur>",
-        choice3: "<Glenn Resch>",
-        choice4: "<Chris Terreri>",
+        choice1: "Cory Schneider",
+        choice2: "Martin Brodeur",
+        choice3: "Glenn Resch",
+        choice4: "Chris Terreri",
         answer: 2
     },
     {
         question: "Who did the Devils defeat to win their first Stanley Cup championship?",
-        choice1: "<Colorado Avalanche>",
-        choice2: "<Detroit Red Wings>",
-        choice3: "<Anaheim Ducks>",
-        choice4: "<Dallas Stars>",
+        choice1: "Colorado Avalanche",
+        choice2: "Detroit Red Wings",
+        choice3: "Anaheim Ducks",
+        choice4: "Dallas Stars",
         answer: 2
     },
 ]
@@ -63,6 +63,9 @@ startGame = () => {
 };
 
 getNewQuestion = () => {
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+        return window.location.assign("/done.html")
+    }
     questionCounter++;
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
@@ -84,9 +87,18 @@ choices.forEach(choice => {
 
         acceptingAnswers = false;
         const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset["number"]
+        const selectedAnswer = selectedChoice.dataset["number"];
+        
+        const classToApply = 'incorrect';
+            if(selectedAnswer === currentQuestion.answer) {
+                classToApply = 'correct';
+            }
+        selectedChoice.parentElement.classList.add(classToApply);
 
-        getNewQuestion();
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion();
+        }, 1000);
     });
 });
 
