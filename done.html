@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia!</title>
+    <link rel="stylesheet" href="Assets/style.css">
+    <link rel="stylesheet" href="Assets/trivia.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="trivia" class="justify-center flex-column">
+        <h1 id="finalScore">0</h1>
+        <form>
+            <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+                />
+                <button type="submit" class="btn" id="saveScorebtn" onclick="saveScore(event)">Save Score</button>
+        </form>
+        <a class="btn" href="trivia.html">Play Again</a>
+        <a class="btn" href="index.html">Home</a>
+    </div>
+    <script src="Assets/done.js"></script>
+</body>
+
+</html>

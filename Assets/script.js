@@ -64,8 +64,8 @@ startGame = () => {
 
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        return window.location.assign("/done.html")
-    }
+        return window.location.assign("done.html")
+    };
     questionCounter++;
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
@@ -94,11 +94,9 @@ choices.forEach(choice => {
                 classToApply = 'correct';
             }
         selectedChoice.parentElement.classList.add(classToApply);
+        selectedChoice.parentElement.classList.remove(classToApply);
 
-        setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply);
-            getNewQuestion();
-        }, 1000);
+        getNewQuestion();
     });
 });
 
