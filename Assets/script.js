@@ -101,3 +101,4 @@ choices.forEach(choice => {
 });
 
 startGame();
+

@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="Assets/trivia.css">
 </head>
 <body>
-    <div id="countdown"></div>
+    <!-- <div id="countdown">
+    </div> -->
+    <div>
+        <div id="timer">
+          <div id="time">60</time>
+          </div>
+    </div>
     <div class="container">
         <div id="trivia" class="justify-center flex-column">
             <h2 id="question">Who wore #13 during the 2021-2022 NHL season?</h2>
@@ -31,5 +37,24 @@
         </div>
     </div>
     <script src="Assets/script.js"></script>
+
+    <!-- jQuery Library included in HTML -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Timer script. "Time" div is updated every second. When finished, "timer" div is removed and replaced with header.  -->
+    <script>
+        var counter = 60;
+        var interval = setInterval(function() {
+          counter--;
+          if (counter <= 0) {
+            clearInterval(interval);
+            $('#timer').html("<h3>Time's Up!</h3>");
+            return;
+          } else {
+            $('#time').text(counter);
+            console.log("Timer --> " + counter);
+          }
+        }, 1000);
+      </script>
+
 </body>
 </html>
