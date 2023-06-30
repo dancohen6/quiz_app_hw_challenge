@@ -12,7 +12,7 @@
     </div> -->
     <div>
         <div id="timer">
-          <div id="time">60</time>
+          <div id="time">10</time>
           </div>
     </div>
     <div class="container">
@@ -42,12 +42,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Timer script. "Time" div is updated every second. When finished, "timer" div is removed and replaced with header.  -->
     <script>
-        var counter = 60;
+        var counter = 10;
         var interval = setInterval(function() {
           counter--;
           if (counter <= 0) {
             clearInterval(interval);
             $('#timer').html("<h3>Time's Up!</h3>");
+            // Re-direct to done page if timer runs out //
+            window.location.href = "done.html";
             return;
           } else {
             $('#time').text(counter);
