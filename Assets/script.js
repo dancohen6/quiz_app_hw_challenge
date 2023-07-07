@@ -95,14 +95,17 @@ choices.forEach(choice => {
         selectedChoice.parentElement.classList.add(classToApply);
 
         if (classToApply === "correct") {
-            // Increase the score if the answer is correct
+            // Increase score if answer is CORRECT //
             score += CORRECT_BONUS;
+        } else {
+            // Remove 10 seconds from timer if answer is INCORRECT //
+            counter -= 10;
         }
 
-        // Display the updated score
+        // DISPLAY SCORE //
         document.getElementById("score").innerText = "Score: " + score;
 
-        // Delay the next question for 1 second (1000 milliseconds)
+        // DELAY NEXT QUESTION //
         setTimeout(() => {
             selectedChoice.parentElement.classList.remove(classToApply);
             getNewQuestion();
