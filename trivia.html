@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="Assets/trivia.css">
 </head>
 <body>
-    <!-- <div id="countdown">
-    </div> -->
-    <div>
+    <div id="top-container">
         <div id="timer">
-          <div id="time">60</time>
-          </div>
-    </div>
+          <div id="time">60</div>
+        </div>
+        <div>
+          <h2 id="score">Score: 0</h2>
+        </div>
+      </div>
 
     <div>
-        <h2 id="score">Score: 0</h2>
         <h2 id="question-counter">Question: 0/5</h2>
     </div>
 
@@ -47,21 +47,21 @@
     <!-- jQuery Library included in HTML -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Timer script. "Time" div is updated every second. When finished, "timer" div is removed and replaced with header.  -->
-    <script>
-        var counter = 60;
-        var interval = setInterval(function() {
-          counter--;
-          if (counter <= 0) {
-            clearInterval(interval);
-            $('#timer').html("<h3>Time's Up!</h3>");
-            // Re-direct to done page if timer runs out //
-            window.location.href = "done.html";
-            return;
-          } else {
-            $('#time').text(counter);
-          }
-        }, 1000);
-      </script>
+    <!-- <script>
+var counter = 60;
+var interval = setInterval(function() {
+  counter--;
+  if (counter <= 0) {
+    clearInterval(interval);
+    $('#timer').html("<h3>Time's Up!</h3>");
+    setTimeout(function() {
+      window.location.href = "done.html";
+    }, 1000);
+  } else {
+    $('#time').text(counter);
+  }
+}, 1000);
+      </script> -->
 
 </body>
 </html>
