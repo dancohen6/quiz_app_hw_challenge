@@ -64,9 +64,11 @@ startGame = () => {
 
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+        document.getElementById("score").innerText = "Final Score: " + score;
         return window.location.assign("done.html")
     };
     questionCounter++;
+    document.getElementById("question-counter").innerText = "Question: " + questionCounter + "/" + MAX_QUESTIONS;
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
@@ -83,20 +85,28 @@ getNewQuestion = () => {
 
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
-        if(!acceptingAnswers) return;
+        if (!acceptingAnswers) return;
 
         acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
-        
-        const classToApply = 'incorrect';
-            if(selectedAnswer === currentQuestion.answer) {
-                classToApply = 'correct';
-            }
-        selectedChoice.parentElement.classList.add(classToApply);
-        selectedChoice.parentElement.classList.remove(classToApply);
 
-        getNewQuestion();
+        const classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+        selectedChoice.parentElement.classList.add(classToApply);
+
+        if (classToApply === "correct") {
+            // Increase the score if the answer is correct
+            score += CORRECT_BONUS;
+        }
+
+        // Display the updated score
+        document.getElementById("score").innerText = "Score: " + score;
+
+        // Delay the next question for 1 second (1000 milliseconds)
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion();
+        }, 1000);
     });
 });
 
